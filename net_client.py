@@ -8,7 +8,7 @@ def main():
 
     for i in range(1, 101):
         print(i)
-        sock.sendall(str(i))
+        sock.sendall(str(i).encode())
         sock.recv()
 
 main()
