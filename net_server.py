@@ -1,5 +1,5 @@
 import socket
- def main():
+def main():
    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
    addr = ("0.0.0.0", 40000)
    sock.bind(addr)
