@@ -4,6 +4,7 @@ def main():
    addr = ("0.0.0.0", 40000)
    sock.bind(addr)
    sock.listen(5)
+   count = 0 
    while True:
       (connectedSock, clientAddress) = sock.accept()
 
@@ -11,11 +12,15 @@ def main():
 
          try:
             message = connectedSock.recv(1024).decode()
-            msg = "WoW Queue: " + message
+            #msg = "WoW Queue: " + message
             connectedSock.sendall(("WoW Queue: " + message).encode())
+            count += 1
 
          except ConnectionAbortedError:
             connectedSock.close()
+            break
+         except BrokenPipeError:
+            print(count)
             break
 
 main()
