@@ -4,18 +4,19 @@ import socket
    addr = ("0.0.0.0", 40000)
    sock.bind(addr)
    sock.listen(5)
-   while sock.accept() is True:
+   while True:
       (connectedSock, clientAddress) = sock.accept()
-      giving_a_message = True
 
-      while giving_a_message is True:
+      while True:
 
          try:
-            msg = connectedSock.recv(1024).decode()
-            connectedSock.sendall(message.encode())
+            message = connectedSock.recv(1024).decode()
+            
+            connectedSock.sendall(("RECIEVED"+message).encode())
 
          except ConnectionAbortedError:
             giving_a_message = False
             connectedSock.close()
+            break
 
 main()
