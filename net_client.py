@@ -9,7 +9,9 @@ def main():
     for i in range(1, 101):
         print(i)
         sock.sendall(str(i).encode())
-        sock.recv(100)
+        reply = sock.recv(100).decode()
+        print(reply)
+        
 
 main()
     
