@@ -1,15 +1,21 @@
 import socket
- 
+ def main():
+   sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   addr = ("0.0.0.0", 40000)
+   sock.bind(addr)
+   sock.listen(5)
+   while sock.accept() is True:
+      (connectedSock, clientAddress) = sock.accept()
+      giving_a_message = True
 
-def main():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #choose_a_port_number = int(input())
-    addr = ("0.0.0.0", 40000)
-    sock.bind(addr)
-    sock.listen(5)
-    (connectedSock, clientAddress) = sock.accept()
-    msg = sock.recv(1024).decode()
-    sock.sendall(message.encode())
-        
+      while giving_a_message is True:
+
+         try:
+            msg = connectedSock.recv(1024).decode()
+            connectedSock.sendall(message.encode())
+
+         except ConnectionAbortedError:
+            giving_a_message = False
+            connectedSock.close()
 
 main()
