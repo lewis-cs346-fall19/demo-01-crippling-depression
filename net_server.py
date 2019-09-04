@@ -11,11 +11,10 @@ def main():
 
          try:
             message = connectedSock.recv(1024).decode()
-            
-            connectedSock.sendall(("RECIEVED"+message).encode())
+            msg = "WoW Queue: " + message
+            connectedSock.sendall(msg.encode())
 
          except ConnectionAbortedError:
-            giving_a_message = False
             connectedSock.close()
             break
 
